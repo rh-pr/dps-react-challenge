@@ -3,13 +3,17 @@ import TableRow from "./TableRow"
 function Table() {
     return (
         <table>
-            <tr>
-                <th>Name</th>
-                <th>City</th>
-                <th>Birthday</th>
-            </tr>
-            <TableRow />
-            <TableRow />
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Birthday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <TableRow />
+                <TableRow />
+            </tbody>
         </table>
     )
 }
