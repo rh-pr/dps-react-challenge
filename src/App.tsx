@@ -1,5 +1,9 @@
 import dpsLogo from './assets/DPS.svg';
 import './App.css';
+import SearchFilter from './components/SearchFilter';
+import SelectCity from './components/SelectCity';
+import HighlightOld from './components/HighlightOld';
+import Table from './components/Table';
 
 function App() {
 	return (
@@ -10,7 +14,10 @@ function App() {
 				</a>
 			</div>
 			<div className="home-card">
-				<p>Your solution goes here 😊</p>
+				<SearchFilter />
+				<SelectCity />
+				<HighlightOld />
+				<Table />
 			</div>
 		</>
 	);
