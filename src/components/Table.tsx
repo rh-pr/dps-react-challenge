@@ -9,6 +9,7 @@ function Table() {
                 <th>Birthday</th>
             </tr>
             <TableRow />
+            <TableRow />
         </table>
     )
 }

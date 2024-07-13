@@ -2,7 +2,7 @@
 
 function HighlightOld() {
     return (
-        <div>
+        <div className="formElem">
             <label htmlFor="highligh">Highlight oldest per city</label>
             <input type="checkbox" id="highligh" name="highligh" />
         </div>

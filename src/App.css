@@ -11,9 +11,11 @@
 	will-change: filter;
 	transition: filter 300ms;
 }
+
 .logo:hover {
 	filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
 	filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +24,7 @@
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
 	}
@@ -39,9 +42,50 @@
 
 .home-card {
 	display: flex;
-	flex-direction: column;
+	justify-content: space-around;
+	flex-wrap: wrap;
 	gap: 0.5rem;
+	width: 60vw;
+	border: 2px solid red;
 }
+
+.formElem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1vw;
+	width: 16vw;
+	/* background-color: green; */
+	padding: 0 1vw;
+	font-weight: bolder;
+	font-size: 1.2rem;
+	color: black;
+	font-style: italic;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+input,
+select {
+	width: 100%;
+	color: #fff;
+}
+
+input[type='checkbox'] {
+	width: 20%;
+	height: 80%;
+	z-index: 8;
+	accent-color: black;
+}
+
+
+table {
+	width: 58vw;
+	/* background-color: black; */
+	/* color: white; */
+	background-color: green;
+
+}
+
 
 .read-the-docs {
 	color: #888;
