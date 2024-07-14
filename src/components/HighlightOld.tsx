@@ -1,5 +1,4 @@
 
-
 function HighlightOld({ setHighlightOld }: { setHighlightOld: (value: boolean) => void }) {
     return (
         <div className="formElem">

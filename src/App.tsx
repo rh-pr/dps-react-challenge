@@ -47,8 +47,6 @@ function App() {
 			.catch(err => console.log(err))
 	}, [])
 
-
-
 	const filteredUsers = useMemo(() => {
 		return users.filter(user => (
 			((user.firstName.toLowerCase().includes(searchUser.toLowerCase())) ||
