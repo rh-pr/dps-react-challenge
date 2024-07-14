@@ -22,6 +22,7 @@ function App() {
 	const [users, setUsers] = useState<User[]>([])
 	const [searchUser, setSearchUser] = useState<string>('')
 	const [selectedCity, setSelectedCity] = useState<string>('')
+	const [highlightOld, setHighlightOld] = useState<boolean>(false)
 
 	useEffect(() => {
 		fetch('https://dummyjson.com/users')
@@ -56,6 +57,20 @@ function App() {
 		))
 	}, [users, searchUser, selectedCity]);
 
+	const oldestUsersId = useMemo(() => {
+		if (!highlightOld) return [];
+
+		const oldestUserList: { [city: string]: User } = {}
+
+		filteredUsers.forEach(user => {
+			if (!oldestUserList[user.city] || new Date(user.birthDay) < new Date(oldestUserList[user.city].birthDay)) {
+				oldestUserList[user.city] = user;
+			}
+		})
+
+		return Object.values(oldestUserList).map(user => user.id);
+	}, [highlightOld])
+
 	return (
 		<>
 			<div>
@@ -64,11 +79,10 @@ function App() {
 				</a>
 			</div>
 			<div className="home-card">
-
 				<SearchFilter setSearchUser={setSearchUser} />
 				<SelectCity usersData={users} setSelectedCity={setSelectedCity} />
-				<HighlightOld />
-				<Table usersData={filteredUsers} />
+				<HighlightOld setHighlightOld={setHighlightOld} />
+				<Table usersData={filteredUsers} oldestUsersId={oldestUsersId} />
 			</div>
 		</>
 	);

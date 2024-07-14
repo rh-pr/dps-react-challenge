@@ -5,10 +5,9 @@ import { User } from '../App'
 //     usersData: User[],
 // }
 
-function Table({ usersData }: { usersData: User[] }) {
+function Table({ usersData, oldestUsersId }: { usersData: User[], oldestUsersId: number[] }) {
     return (
         <table>
-
             <thead>
                 <tr>
                     <th>Name </th>
@@ -18,7 +17,7 @@ function Table({ usersData }: { usersData: User[] }) {
             </thead>
             <tbody>
                 {usersData.map(user => (
-                    <TableRow key={user.id} user={user} />
+                    <TableRow key={user.id} user={user} oldestUsersId={oldestUsersId} />
                 ))}
 
             </tbody>

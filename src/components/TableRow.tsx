@@ -1,8 +1,8 @@
 import { User } from '../App'
 
-function TableRow({ user }: { user: User }) {
+function TableRow({ user, oldestUsersId }: { user: User, oldestUsersId: number[] }) {
     return (
-        <tr>
+        <tr style={{ backgroundColor: oldestUsersId.includes(user.id) ? 'lightblue' : 'transparent' }}>
             <td>{user.firstName} {user.lasstName}</td>
             <td>{user.city}</td>
             <td>{user.birthDay}</td>
