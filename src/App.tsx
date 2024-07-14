@@ -4,7 +4,7 @@ import SearchFilter from './components/SearchFilter';
 import SelectCity from './components/SelectCity';
 import HighlightOld from './components/HighlightOld';
 import Table from './components/Table';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export interface User {
 	id: number,
@@ -20,6 +20,7 @@ interface OriginalData {
 
 function App() {
 	const [users, setUsers] = useState<User[]>([])
+	const [searchUser, setSearchUser] = useState('')
 
 	useEffect(() => {
 		fetch('https://dummyjson.com/users')
@@ -44,9 +45,13 @@ function App() {
 			.catch(err => console.log(err))
 	}, [])
 
-	const filterUsers = () => {
-		return users;
-	}
+	const filteredUsers = useMemo<User[]>(() => {
+		return users.filter((user: User) => (
+			user.firstName.toLocaleLowerCase().includes(searchUser.toLocaleLowerCase()) ||
+			user.lasstName.toLocaleLowerCase().includes(searchUser.toLocaleLowerCase())
+		))
+	}, [users, searchUser])
+
 	return (
 		<>
 			<div>
@@ -59,7 +64,7 @@ function App() {
 				<SearchFilter />
 				<SelectCity />
 				<HighlightOld />
-				<Table usersData={users} />
+				<Table usersData={filteredUsers} />
 			</div>
 		</>
 	);
