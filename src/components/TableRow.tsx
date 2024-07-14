@@ -1,11 +1,11 @@
+import { User } from '../App'
 
-
-function TableRow() {
+function TableRow({ user }: { user: User }) {
     return (
         <tr>
-            <td>Name</td>
-            <td>City</td>
-            <td>birthd</td>
+            <td>{user.firstName} {user.lasstName}</td>
+            <td>{user.city}</td>
+            <td>{user.birthDay}</td>
         </tr>
     )
 }

@@ -80,10 +80,11 @@ input[type='checkbox'] {
 
 table {
 	width: 58vw;
-	/* background-color: black; */
-	/* color: white; */
-	background-color: green;
+}
 
+tr {
+	height: 5vh;
+	text-align: left;
 }
 
 

@@ -1,18 +1,26 @@
 import TableRow from "./TableRow"
+import { User } from '../App'
 
-function Table() {
+// interface UserDataProps {
+//     usersData: User[],
+// }
+
+function Table({ usersData }: { usersData: User[] }) {
     return (
         <table>
+
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Name </th>
                     <th>City</th>
                     <th>Birthday</th>
                 </tr>
             </thead>
             <tbody>
-                <TableRow />
-                <TableRow />
+                {usersData.map(user => (
+                    <TableRow key={user.id} user={user} />
+                ))}
+
             </tbody>
         </table>
     )

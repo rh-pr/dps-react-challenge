@@ -6,7 +6,7 @@ import HighlightOld from './components/HighlightOld';
 import Table from './components/Table';
 import { useEffect, useState } from 'react';
 
-interface User {
+export interface User {
 	id: number,
 	firstName: string,
 	lasstName: string,
@@ -33,15 +33,22 @@ function App() {
 						lasstName: user.lastName,
 						city: user.address.city,
 						birthDay: user.birthDate
+							.replaceAll('-', '.').split('.')
+							.map((el: string) => el.length === 1 ? el = '0' + el : el)
+							.reverse()
+							.join('.')
 					}
 				))
 				setUsers(filteredUsersData)
 			})
 			.catch(err => console.log(err))
 	}, [])
+
+	const filterUsers = () => {
+		return users;
+	}
 	return (
 		<>
-			{console.log(users)};
 			<div>
 				<a href="https://www.digitalproductschool.io/" target="_blank">
 					<img src={dpsLogo} className="logo" alt="DPS logo" />
@@ -52,7 +59,7 @@ function App() {
 				<SearchFilter />
 				<SelectCity />
 				<HighlightOld />
-				<Table />
+				<Table usersData={users} />
 			</div>
 		</>
 	);
