@@ -20,7 +20,7 @@ interface OriginalData {
 
 function App() {
 	const [users, setUsers] = useState<User[]>([])
-	const [searchUser, setSearchUser] = useState('')
+	const [searchUser, setSearchUser] = useState<string>('')
 
 	useEffect(() => {
 		fetch('https://dummyjson.com/users')
@@ -49,7 +49,9 @@ function App() {
 		return users.filter((user: User) => (
 			user.firstName.toLocaleLowerCase().includes(searchUser.toLocaleLowerCase()) ||
 			user.lasstName.toLocaleLowerCase().includes(searchUser.toLocaleLowerCase())
-		))
+		)).sort((a, b) =>
+			a.firstName.localeCompare(b.firstName) || a.lasstName.localeCompare(b.lasstName)
+		);
 	}, [users, searchUser])
 
 	return (
@@ -61,7 +63,7 @@ function App() {
 			</div>
 			<div className="home-card">
 
-				<SearchFilter />
+				<SearchFilter setSearchUser={setSearchUser} />
 				<SelectCity />
 				<HighlightOld />
 				<Table usersData={filteredUsers} />
