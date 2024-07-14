@@ -21,6 +21,7 @@ interface OriginalData {
 function App() {
 	const [users, setUsers] = useState<User[]>([])
 	const [searchUser, setSearchUser] = useState<string>('')
+	const [selectedCity, setSelectedCity] = useState<string>('')
 
 	useEffect(() => {
 		fetch('https://dummyjson.com/users')
@@ -45,14 +46,15 @@ function App() {
 			.catch(err => console.log(err))
 	}, [])
 
-	const filteredUsers = useMemo<User[]>(() => {
-		return users.filter((user: User) => (
-			user.firstName.toLocaleLowerCase().includes(searchUser.toLocaleLowerCase()) ||
-			user.lasstName.toLocaleLowerCase().includes(searchUser.toLocaleLowerCase())
-		)).sort((a, b) =>
-			a.firstName.localeCompare(b.firstName) || a.lasstName.localeCompare(b.lasstName)
-		);
-	}, [users, searchUser])
+
+
+	const filteredUsers = useMemo(() => {
+		return users.filter(user => (
+			((user.firstName.toLowerCase().includes(searchUser.toLowerCase())) ||
+				(user.firstName.toLowerCase().includes(searchUser.toLowerCase()))) &&
+			(selectedCity !== '' ? user.city === selectedCity : user.city)
+		))
+	}, [users, searchUser, selectedCity]);
 
 	return (
 		<>
@@ -64,7 +66,7 @@ function App() {
 			<div className="home-card">
 
 				<SearchFilter setSearchUser={setSearchUser} />
-				<SelectCity />
+				<SelectCity usersData={users} setSelectedCity={setSelectedCity} />
 				<HighlightOld />
 				<Table usersData={filteredUsers} />
 			</div>
